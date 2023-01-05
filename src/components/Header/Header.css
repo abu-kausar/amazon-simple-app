@@ -9,6 +9,9 @@
     line-height: 35px;
     font-size: 25px;
 }
+nav h2{
+    color: white;
+}
 nav a{
     text-decoration: none;
     color: white;
