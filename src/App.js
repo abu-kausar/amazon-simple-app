@@ -2,36 +2,25 @@ import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Review from './components/Review/Review';
 import NotFound from './components/NotFound/NotFound';
 import ProductDetail from './components/ProductDetail/ProductDetail';
+import Manage from './components/Manage/Manage';
 
 function App() {
   return (
     <div>
       <Header></Header>
       <Router>
-        <Switch>
-          <Route exact path="/shop" element={<Shop/>}>
-            <Shop></Shop>
-          </Route>
-          <Route exact path="/review" element={<Review/>}>
-            <Review></Review>
-          </Route>
-          <Route exact path="/manage">
-            <h2>Coming soon..</h2>
-          </Route>
-          <Route exact path="/">
-            <Shop></Shop>
-          </Route>
-          <Route exact path="/product/:productKey">
-            <ProductDetail></ProductDetail>
-          </Route>
-          <Route path="*">
-            <NotFound></NotFound>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route exact path="/shop" element ={<Shop/>}/>
+          <Route exact path="/review" element={<Review/>}/>
+          <Route exact path="/manage" element={<Manage/>}/>
+          <Route exact path="/" element={<Shop/>}/>
+          <Route exact path="/product/:key" element={<ProductDetail/>}/>
+          <Route path="*" element={<NotFound/>}/>
+        </Routes>
       </Router>
     </div>
   );
