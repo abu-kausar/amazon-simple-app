@@ -2,9 +2,8 @@ import React from 'react';
 
 const Cart = (props) => {
     const cart = props.cart;
-    console.log(cart);
-    // const totalPrice = cart.reduce((totalPrice, pd) => totalPrice+pd.price, 0);
-    
+    // const totalProductPrice = cart.reduce((totalProductPrice, pd) => totalProductPrice+pd.price, 0);
+
     let totalProductPrice = 0;
     for(let i=0; i<cart.length;i++){
         const pd = cart[i];

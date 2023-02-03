@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fakeData from '../../fakeData';
 import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
@@ -7,11 +8,11 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 const Review = () => {
     const [cart, setCart] = useState([]);
     const [orderPlaced, setOrderPlaced] = useState(false);
+    
+    const navigate = useNavigate();
 
-    const handlePlaceHolder = () => {
-        setCart([]);
-        setOrderPlaced(true);
-        processOrder();
+    const handleCheckoutOrder = () => {
+        navigate('/shipment');
     }
 
     const removeProduct = (key) => {
@@ -44,7 +45,7 @@ const Review = () => {
             </div>
             <div className='cart-container'>
                 <Cart cart={cart}>
-                    <button onClick={handlePlaceHolder} className='yellow-btn'>Place Order</button>
+                    <button onClick={handleCheckoutOrder} className='yellow-btn'>Checkout Order</button>
                 </Cart>
             </div>
         </div>
