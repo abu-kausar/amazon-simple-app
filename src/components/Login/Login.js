@@ -11,6 +11,7 @@ import {
         FacebookAuthProvider  } from "firebase/auth";
 import { useContext, useState } from 'react';
 import { UserContext } from '../../App';
+import { Navigate, Outlet, redirect, useLocation, useNavigate } from 'react-router-dom';
 
 const app = initializeApp(firebaseConfig);
 
@@ -27,6 +28,8 @@ function Login() {
 
   // using context api
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const provider = new GoogleAuthProvider();
   const fbProvider = new FacebookAuthProvider();
@@ -202,8 +205,11 @@ function Login() {
         newUser.success = true;
         setSingleUser(newUser);
         setLoggedInUser(newUser);
-        console.log('sign in', user);
-        console.log('sign in', user.displayName);
+        
+        // logged in user will redirect to the desired location
+        if(location.state?.from){
+          navigate(location.state.from);
+        }
         // ...
       })
       .catch((error) => {

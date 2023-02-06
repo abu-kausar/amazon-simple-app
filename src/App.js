@@ -18,18 +18,16 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <h2>{loggedInUser.email}</h2>
-      <Header></Header>
+      
       <Router>
+      <Header></Header>
         <Routes>
           <Route exact path="/" element={<Shop/>}/>
           <Route exact path="/shop" element ={<Shop/>}/>
           <Route exact path="/review" element={<Review/>}/>
-          <Route exact path="/manage" element={<PrivateRoute/>}>
-            <Route exact path="/manage" element={<Manage/>}/>
-          </Route>
-          <Route exact path="/shipment" element={<PrivateRoute/>}>
-            <Route exact path="/shipment" element={<Shipment/>}/>
+          <Route exact path="/*" element={<PrivateRoute/>}>
+            <Route exact path="shipment" element={<Shipment/>}/>
+            <Route exact path="manage" element={<Manage/>}/>
           </Route>
           <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/product/:key" element={<ProductDetail/>}/>
